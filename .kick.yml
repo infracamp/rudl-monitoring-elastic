@@ -1,0 +1,15 @@
+version: 1
+from: "infracamp/kickstart-flavor-base:testing"
+
+env:
+  JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+
+command:
+  build:
+    - "sudo scripts/install.sh"
+    - "composer update"
+
+  init:
+    - "sudo  vendor/bin/cloudtool etc/ /etc/"
+    - "sudo -u elasticsearch /usr/share/elasticsearch/bin/elasticsearch -d"
+    - "sudo -u kibana /usr/share/kibana/bin/kibana"
